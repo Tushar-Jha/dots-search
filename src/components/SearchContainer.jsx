@@ -26,6 +26,10 @@ const FileSearchResult = ({file, highlightedText}) => SearchResult({title: file.
 const ListSearchResult = ({list, highlightedText}) => SearchResult({title: list.name, subscript1: list.category, subscript2: list.timeAgo, icon: 'list', highlightedText});
 
 const SearchContainer = () => {
+
+    const containerRef = React.useRef(null);
+
+    const [insideInteraction, setInsideInteraction] = React.useState(false);
     const [inputFocused, setInputFocused] = React.useState(false);
     const [selectedFilter, setSelectedFilter] = React.useState({ id: 'all', value: null });
     const [searchText, setSearchText] = React.useState("");
@@ -44,8 +48,13 @@ const SearchContainer = () => {
         setSearchText(searchText);
     }
 
-    const clickFilterHandler = (selectedFilter) => setSelectedFilter({ id: selectedFilter.id, value: selectedFilter.value })
+    const clickFilterHandler = (selectedFilter) => {
+        setInsideInteraction(true);
+        setSelectedFilter({ id: selectedFilter.id, value: selectedFilter.value });
+    }
+
     const changeSelectedFiltersHandler = (filter, show) => {
+        setInsideInteraction(true);
         if(filter.id === selectedFilter.id) {
             setSelectedFilter({ id: 'all', value: null });
         }
@@ -53,6 +62,7 @@ const SearchContainer = () => {
     }
 
     const inputFocusHandler = () => {
+        setInsideInteraction(true);
         setInputFocused(true);
     }
 
@@ -60,13 +70,32 @@ const SearchContainer = () => {
         setInputFocused(false); 
     }
 
+    const clickFilterDropdownToggler = () => {
+        setInsideInteraction(true);
+        setShowFilterDropdown((prev) => !prev)
+    }
+
     React.useEffect(() => { 
-        setExpandSearchInput(searchText.length > 0 || showFilterDropdown || inputFocused);
-    }, [searchText, showFilterDropdown, inputFocused]);
+        setExpandSearchInput(searchText.length > 0 || showFilterDropdown || inputFocused || insideInteraction);
+    }, [searchText, showFilterDropdown, inputFocused, insideInteraction]);
+
+    React.useEffect(() => {
+        const handleClickOutside = (event) => {
+        if (containerRef.current && !containerRef.current.contains(event.target)) {
+            setInsideInteraction(false);
+            setInputFocused(false);
+            setShowFilterDropdown(false);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <div className='container'>
             <div
+                ref={containerRef}
                 className={`search-container ${expandSearchInput ? ' expanded' : ''}`}>
                 <div className='search-input-container'>
                     {
@@ -94,7 +123,7 @@ const SearchContainer = () => {
                             </div>
                             <div className='filter-dropdown-conatiner'>
                                 <div>
-                                    <Settings onClick={() => setShowFilterDropdown((prev) => !prev)} className={`filter-icon${showFilterDropdown === true ? ' active': ''}`}/>
+                                    <Settings onMouseDown={() => clickFilterDropdownToggler()} className={`filter-icon${showFilterDropdown === true ? ' active': ''}`}/>
                                     {
                                         showFilterDropdown ? 
                                         <div className='filter-dropdown'>
