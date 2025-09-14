@@ -8,6 +8,8 @@ import ToggleButton from './ui-components/ToggleButton';
 import AnimatedNumber from './ui-components/AnimatedNumber';
 import SearchResult from './ui-components/SearchResult';
 import SearchInput from './ui-components/SearchInput';
+import NoResultsFound from './ui-components/NoResultsFound';
+import SearchDialog from './ui-components/SearchDialog';
 
 const FILTER_ICON_SIZE = 16;
 
@@ -116,18 +118,24 @@ const SearchContainer = () => {
                             {
                                 searchLoading 
                                 ? <div className='shimmer-container'>{[...Array(5)].map((_, i) => (<Shimmer key={i} />))}</div>
-                                : filteredSearchResults.filter(item => selectedFilter.id === 'all' ? true : item.type === selectedFilter.value).map((item, index) => {
-                                    switch(item.type) {
-                                        case 'person':
-                                            return <PersonSearchResult key={index} person={item}></PersonSearchResult>;
-                                        case 'file':
-                                            return <FileSearchResult key={index} file={item}></FileSearchResult>;
-                                        case 'list':
-                                            return <ListSearchResult key={index} list={item}></ListSearchResult>;
-                                        default:
-                                            return null;
-                                    }
-                                })
+                                : (
+                                    filteredSearchResults.filter(item => selectedFilter.id === 'all' ? true : item.type === selectedFilter.value).length === 0
+                                    ? (
+                                        searchText.length === 0 ? <SearchDialog />: <NoResultsFound />
+                                    )
+                                    : filteredSearchResults.filter(item => selectedFilter.id === 'all' ? true : item.type === selectedFilter.value).map((item, index) => {
+                                        switch(item.type) {
+                                            case 'person':
+                                                return <PersonSearchResult key={index} person={item}></PersonSearchResult>;
+                                            case 'file':
+                                                return <FileSearchResult key={index} file={item}></FileSearchResult>;
+                                            case 'list':
+                                                return <ListSearchResult key={index} list={item}></ListSearchResult>;
+                                            default:
+                                                return null;
+                                        }
+                                    })
+                                )
                             }
                         </div>
                     </div>

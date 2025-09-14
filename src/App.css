@@ -295,3 +295,20 @@
     transform: translateX(100%);
   }
 }
+
+.no-results-found-container,
+.search-dialog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6d6d6d;
+  text-align: center;
+  padding: 20px;
+}
+
+.no-results-found-container h4,
+.search-dialog-container h4 {
+  margin-top: 10px;
+}
