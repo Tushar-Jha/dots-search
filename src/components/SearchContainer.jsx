@@ -21,9 +21,9 @@ const FILTERS = [
     { id: 'list', name: 'Lists', value: 'list', icon: <List size={FILTER_ICON_SIZE}/>, show: true },
 ]
 
-const PersonSearchResult = ({person}) => SearchResult({title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar });
-const FileSearchResult = ({file}) => SearchResult({title: file.name, subscript1: file.category, subscript2: file.timeAgo, icon: file.fileType});
-const ListSearchResult = ({list}) => SearchResult({title: list.name, subscript1: list.category, subscript2: list.timeAgo, icon: 'list'});
+const PersonSearchResult = ({person, highlightedText}) => SearchResult({title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar, highlightedText });
+const FileSearchResult = ({file, highlightedText}) => SearchResult({title: file.name, subscript1: file.category, subscript2: file.timeAgo, icon: file.fileType, highlightedText });
+const ListSearchResult = ({list, highlightedText}) => SearchResult({title: list.name, subscript1: list.category, subscript2: list.timeAgo, icon: 'list', highlightedText});
 
 const SearchContainer = () => {
     const [inputFocused, setInputFocused] = React.useState(false);
@@ -126,11 +126,11 @@ const SearchContainer = () => {
                                     : filteredSearchResults.filter(item => selectedFilter.id === 'all' ? true : item.type === selectedFilter.value).map((item, index) => {
                                         switch(item.type) {
                                             case 'person':
-                                                return <PersonSearchResult key={index} person={item}></PersonSearchResult>;
+                                                return <PersonSearchResult key={index} person={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></PersonSearchResult>;
                                             case 'file':
-                                                return <FileSearchResult key={index} file={item}></FileSearchResult>;
+                                                return <FileSearchResult key={index} file={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></FileSearchResult>;
                                             case 'list':
-                                                return <ListSearchResult key={index} list={item}></ListSearchResult>;
+                                                return <ListSearchResult key={index} list={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></ListSearchResult>;
                                             default:
                                                 return null;
                                         }
