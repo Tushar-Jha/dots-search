@@ -21,7 +21,7 @@ const staticList = [
         type: "person",
         name: "Carol Lee",
         avatar: "https://randomuser.me/api/portraits/women/3.jpg",
-        status: "deactivated",
+        status: "away",
         timeAgo: "1 hour ago",
     },
     {
@@ -37,7 +37,7 @@ const staticList = [
         type: "person",
         name: "Eva Brown",
         avatar: "https://randomuser.me/api/portraits/women/5.jpg",
-        status: "offline",
+        status: "busy",
         timeAgo: "20 minutes ago",
     },
     {

@@ -3,7 +3,6 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: #d8d8d8;
 }
 
 .search-container {
@@ -17,6 +16,9 @@
   box-shadow: 0 0 6px 1px #ababab;
   overflow-y: hidden;
   transition: height 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .search-container.expanded {
@@ -92,18 +94,19 @@
 .search-result-item-icon {
   width: 40px;
   height: 40px;
-  border-radius: 10%;
+  border-radius: 20%;
   margin-right: 15px;
   background-color: #dddddd;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .search-result-item-icon > img {
   width: 100%;
   height: 100%;
-  border-radius: 10%;
+  border-radius: 20%;
   object-fit: cover;
 }
 
@@ -112,6 +115,7 @@
   font-size: 0.8rem;
   color: #6d6d6d;
   margin-top: 2px;
+  text-transform: capitalize;
 }
 
 .search-result-item-subscript-separator {
@@ -162,6 +166,49 @@
   background-color: #4d4d4d;
   padding: 4px 8px;
   border-radius: 6px;
+}
+
+.status-indicator-container {
+  position: absolute;
+  display: inline-block;
+  right: -6px;
+  bottom: -10px;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.status-indicator::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  border: 2px solid #f3f3f3;
+  z-index: 2;
+}
+
+.status-indicator.green::after {
+  background-color: #3cdb42;
+}
+.status-indicator.gray::after {
+  background-color: rgb(194, 194, 194);
+}
+.status-indicator.darkgray::after {
+  background-color: rgb(87, 87, 87);
+}
+.status-indicator.red::after {
+  background-color: rgb(223, 70, 70);
+}
+.status-indicator.yellow::after {
+  background-color: rgb(230, 210, 30);
 }
 
 .loading-icon {
@@ -222,12 +269,12 @@
 }
 .filter-icon:hover {
   color: rgb(32, 32, 32);
-  transform: rotatez(50deg);
+  transform: rotatez(180deg);
 }
 
 .filter-icon.active {
   color: rgb(32, 32, 32);
-  transform: rotatez(50deg);
+  transform: rotatez(180deg);
 }
 
 .filter-dropdown-conatiner {
@@ -242,6 +289,8 @@
   border-radius: 10px;
   right: 10px;
   width: 160px;
+  top: 30px;
+  z-index: 3;
 }
 
 .filter-dropdown li {
@@ -353,6 +402,10 @@
   color: #6d6d6d;
   text-align: center;
   padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .no-results-found-container h4,

@@ -21,10 +21,10 @@ const FILTERS = [
     { id:'list', name: 'Lists', value: 'list', icon: <List size={FILTER_ICON_SIZE}/>, show: true },
 ]
 
-const PersonSearchResult = ({person, highlightedText}) => SearchResult({ id: person.id, title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar, highlightedText });
-const FileSearchResult = ({file, highlightedText}) => SearchResult({ id: file.id, title: file.name, subscript1: `in ${file.category}`, subscript2: file.timeAgo, icon: file.fileType, highlightedText });
-const ChatSearchResult = ({chat, highlightedText}) => SearchResult({ id: chat.id, title: chat.name, subscript1: chat.lastMessage, subscript2: null, icon: 'chat', highlightedText });
-const ListSearchResult = ({list, highlightedText}) => SearchResult({ id: list.id, title: list.name, subscript1: `in ${list.category}`, subscript2: list.timeAgo, icon: 'list', highlightedText});
+const PersonSearchResult = ({person, highlightedText}) => SearchResult({ id: person.id, title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar, status: person.status, highlightedText });
+const FileSearchResult = ({file, highlightedText}) => SearchResult({ id: file.id, title: file.name, subscript1: `in ${file.category}`, subscript2: file.timeAgo, icon: file.fileType, status: null, highlightedText });
+const ChatSearchResult = ({chat, highlightedText}) => SearchResult({ id: chat.id, title: chat.name, subscript1: chat.lastMessage, subscript2: null, icon: 'chat', status: null, highlightedText });
+const ListSearchResult = ({list, highlightedText}) => SearchResult({ id: list.id, title: list.name, subscript1: `in ${list.category}`, subscript2: list.timeAgo, icon: 'list', status: null, highlightedText});
 
 const SearchContainer = () => {
 

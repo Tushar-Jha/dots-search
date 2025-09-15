@@ -3,7 +3,15 @@ import { ArrowUpRight, Link } from "lucide-react";
 import FileTypeIconMap from "../../data/fileTypeIcons.jsx";
 import HighlightedText from "./HighlightedText.jsx";
 
-const SearchResult = ({ id, title, subscript1, subscript2, image, icon, highlightedText=''}) => {
+const STATUS_COLOR_MAP = {
+    "active": "green",
+    "offline": "darkgray",
+    "deactivated": "gray",
+    "busy": "red",
+    "away": "yellow",
+}
+
+const SearchResult = ({ id, title, subscript1, subscript2, image, icon, status, highlightedText=''}) => {
     const [showCopyTooltip, setShowCopyTooltip] = React.useState(false);
     const [copyLinkText, setCopyLinkText] = React.useState('Copy link');
 
@@ -33,6 +41,9 @@ const SearchResult = ({ id, title, subscript1, subscript2, image, icon, highligh
                 <div className='search-result-item-icon'>
                     { 
                         image ? <img className='avatar-image' src={image} /> : (icon ? FileTypeIconMap[icon] : <FileText />)
+                    }
+                    {
+                        status ? <div className="status-indicator-container"><span className={`status-indicator ${STATUS_COLOR_MAP[status]}`}></span></div> : null
                     }
                 </div>
                 <div className='search-result-item-info'>
