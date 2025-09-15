@@ -232,6 +232,7 @@
 .visible-filters {
   display: flex;
   gap: 15px;
+  z-index: 2;
 }
 
 .filter-item {
@@ -266,6 +267,7 @@
   height: 20px;
   margin-right: 10px;
   transition: transform 0.3s, color 0.3s;
+  z-index: 2;
 }
 .filter-icon:hover {
   color: rgb(32, 32, 32);
