@@ -3,7 +3,7 @@ import { ArrowUpRight, Link } from "lucide-react";
 import FileTypeIconMap from "../../data/fileTypeIcons.jsx";
 import HighlightedText from "./HighlightedText.jsx";
 
-const SearchResult = ({title, subscript1, subscript2, image, icon, highlightedText='', link}) => {
+const SearchResult = ({ id, title, subscript1, subscript2, image, icon, highlightedText=''}) => {
     const [showCopyTooltip, setShowCopyTooltip] = React.useState(false);
     const [copyLinkText, setCopyLinkText] = React.useState('Copy link');
 
@@ -49,8 +49,8 @@ const SearchResult = ({title, subscript1, subscript2, image, icon, highlightedTe
                     {
                         showCopyTooltip ? <span className="copy-link-text">{copyLinkText}</span> : null
                     }
-                    <button className="search-result-item-action-button" onClick={() => copyLinkHandler(item.id)} onMouseEnter={copyButtonMouseEnterHandler} onMouseLeave={copyButtonMouseLeaveHandler}><Link size={16}/></button>
-                    <button className="search-result-item-action-button" onClick={() => openInNewTabHandler(item.id)}><ArrowUpRight size={16}/></button><span className="open-in-new-tab">New tab</span>
+                    <button className="search-result-item-action-button" onClick={() => copyLinkHandler(id)} onMouseEnter={copyButtonMouseEnterHandler} onMouseLeave={copyButtonMouseLeaveHandler}><Link size={16}/></button>
+                    <button className="search-result-item-action-button" onClick={() => openInNewTabHandler(id)}><ArrowUpRight size={16}/></button><span className="open-in-new-tab">New tab</span>
                 </div>
             </div>
         </div>
