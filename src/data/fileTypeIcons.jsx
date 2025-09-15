@@ -1,4 +1,4 @@
-import { FileSpreadsheet, FileText, Folder, ImageIcon, List, Presentation, Video } from 'lucide-react';
+import { FileSpreadsheet, FileText, Folder, ImageIcon, List, MessageCircleMore, Presentation, Video } from 'lucide-react';
 
 const FileTypeIconMap = {
     docx: <FileText />,
@@ -7,7 +7,8 @@ const FileTypeIconMap = {
     xlsx: <FileSpreadsheet />,
     video: <Video />,
     folder: <Folder />,
-    list: <List />
+    list: <List />,
+    chat: <MessageCircleMore />
 }
 
 export default FileTypeIconMap;

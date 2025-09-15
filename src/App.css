@@ -9,7 +9,7 @@
 .search-container {
   margin-top: 100px;
   width: 700px;
-  height: 80px;
+  height: 84px;
   max-height: 500px;
   background-color: #f3f3f3;
   border-radius: 20px;
@@ -116,6 +116,52 @@
 
 .search-result-item-subscript-separator {
   margin: 0 6px;
+}
+
+.search-result-item-action-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-right: 20px;
+  position: relative;
+}
+
+.search-result-item:hover > .search-result-item-action-container {
+  opacity: 1;
+}
+
+.search-result-item-action-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  padding: 10px;
+}
+
+.search-result-item-action-button:hover {
+  background-color: #e0e0e0;
+}
+
+.open-in-new-tab {
+  font-size: 0.8rem;
+  color: #6d6d6d;
+  margin-left: -4px;
+}
+
+.copy-link-text {
+  position: absolute;
+  font-size: 0.8rem;
+  color: #f3f3f3;
+  margin-top: -50px;
+  margin-left: -20px;
+  background-color: #4d4d4d;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .loading-icon {

@@ -413,6 +413,68 @@ const staticList = [
         name: "Holiday Destinations",
         category: "Travel",
         numberOfItems: 4
+    },
+
+    // Chat Messages (10 records)
+    {
+        id: 51,
+        type: "chat",
+        name: "Software Engineering Team",
+        lastMessage: "Don't forget the meeting at 10 AM tomorrow.",
+    },
+    {
+        id: 52,
+        type: "chat",
+        name: "Marketing Team",
+        lastMessage: "The new campaign looks great!",
+    },
+    {
+        id: 53,
+        type: "chat",
+        name: "HR Department",
+        lastMessage: "Please submit your timesheets by end of day.",
+    },
+    {
+        id: 54,
+        type: "chat",
+        name: "Project Alpha",
+        lastMessage: "The client approved the designs.",
+    },
+    {
+        id: 55,
+        type: "chat",
+        name: "Family Group",
+        lastMessage: "Dinner at 7 PM tonight?",
+    },
+    {
+        id: 56,
+        type: "chat",
+        name: "Book Club",
+        lastMessage: "Next meeting is on Friday.",
+    },
+    {
+        id: 57,
+        type: "chat",
+        name: "Gym Buddies",
+        lastMessage: "Who's up for a workout this weekend?",
+    },
+    {
+        id: 58,
+        type: "chat",
+        name: "Travel Plans",
+        lastMessage: "Tickets booked for the trip!",
+    },
+    {
+        id: 59,
+        type: "chat",
+        name: "Cooking Enthusiasts",
+        lastMessage: "New recipe ideas to try out.",
+    },
+    {
+        id: 60,
+        type: "chat",
+        name: "Movie Fans",
+        lastMessage: "Let's watch the new release this weekend.",
     }
 ];
 

@@ -16,14 +16,15 @@ const FILTER_ICON_SIZE = 16;
 const FILTERS = [
     { id:'all' ,name: 'All', value: null, icon: null, show: true },
     { id:'people', name: 'People', value: 'person', icon: <Users size={FILTER_ICON_SIZE}/>, show: true },
-    { id:'chats', name: 'Chats', value: 'person', icon: <MessageCircleMore size={FILTER_ICON_SIZE}/>, show: true },
+    { id:'chat', name: 'Chats', value: 'chat', icon: <MessageCircleMore size={FILTER_ICON_SIZE}/>, show: true },
     { id:'file', name: 'Files', value:'file', icon: <FileText size={FILTER_ICON_SIZE}/>, show: true },
-    { id: 'list', name: 'Lists', value: 'list', icon: <List size={FILTER_ICON_SIZE}/>, show: true },
+    { id:'list', name: 'Lists', value: 'list', icon: <List size={FILTER_ICON_SIZE}/>, show: true },
 ]
 
-const PersonSearchResult = ({person, highlightedText}) => SearchResult({title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar, highlightedText });
-const FileSearchResult = ({file, highlightedText}) => SearchResult({title: file.name, subscript1: file.category, subscript2: file.timeAgo, icon: file.fileType, highlightedText });
-const ListSearchResult = ({list, highlightedText}) => SearchResult({title: list.name, subscript1: list.category, subscript2: list.timeAgo, icon: 'list', highlightedText});
+const PersonSearchResult = ({person, highlightedText}) => SearchResult({ title: person.name, subscript1: person.status, subscript2: person.timeAgo, image: person.avatar, highlightedText });
+const FileSearchResult = ({file, highlightedText}) => SearchResult({ title: file.name, subscript1: `in ${file.category}`, subscript2: file.timeAgo, icon: file.fileType, highlightedText });
+const ChatSearchResult = ({chat, highlightedText}) => SearchResult({ title: chat.name, subscript1: chat.lastMessage, subscript2: null, icon: 'chat', highlightedText });
+const ListSearchResult = ({list, highlightedText}) => SearchResult({ title: list.name, subscript1: `in ${list.category}`, subscript2: list.timeAgo, icon: 'list', highlightedText});
 
 const SearchContainer = () => {
 
@@ -160,6 +161,8 @@ const SearchContainer = () => {
                                                 return <FileSearchResult key={index} file={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></FileSearchResult>;
                                             case 'list':
                                                 return <ListSearchResult key={index} list={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></ListSearchResult>;
+                                            case 'chat':
+                                                return <ChatSearchResult key={index} chat={item} highlightedText={searchText.split(" ").filter(text => text.trim()).join(" ")}></ChatSearchResult>;
                                             default:
                                                 return null;
                                         }
